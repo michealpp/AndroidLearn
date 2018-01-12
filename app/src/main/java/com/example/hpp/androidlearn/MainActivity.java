@@ -148,7 +148,7 @@ public class MainActivity extends BaseActivity {
     }
 
 
-    private void showSingleChoiceDialog(String title, String[] items){
+    private void showChoiceDialog(String title, String[] items){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setIcon(R.mipmap.loco);
         builder.setTitle(title);
@@ -160,6 +160,21 @@ public class MainActivity extends BaseActivity {
             }
         });
 
+        builder.setCancelable(true);
+        builder.create().show();
+    }
+
+    private void showSingleChoiceDialog(String title, final String[] items){
+        android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(this);
+        builder.setIcon(R.mipmap.loco);
+        builder.setTitle(title);
+        builder.setSingleChoiceItems(items, 1, new DialogInterface.OnClickListener(){
+            @Override
+            public void onClick(DialogInterface dlg, int i){
+                Toast.makeText(getApplicationContext(), "you chose " + items[i], Toast.LENGTH_SHORT).show();
+                //dlg.dismiss();
+            }
+        });
         builder.setCancelable(true);
         builder.create().show();
     }
